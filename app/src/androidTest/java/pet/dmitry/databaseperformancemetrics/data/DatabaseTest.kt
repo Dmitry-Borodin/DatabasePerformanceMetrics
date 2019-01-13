@@ -21,7 +21,6 @@ class DatabaseTest {
 
     @Before
     fun setUp() {
-        Log.e("my", "before")
         database = Room.inMemoryDatabaseBuilder(
             InstrumentationRegistry.getContext(),
             Database::class.java

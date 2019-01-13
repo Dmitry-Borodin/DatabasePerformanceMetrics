@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DatabasePerformanceMetrics</string>
+    <string name="amount_of_authors_and_songs_main_text">Currently in database %1$s authors and %2$s songs</string>
+    <string name="start_feeding">Start Feeding</string>
+    <string name="stop_feeding">Stop Feeding</string>
+    <string name="refetch_metrics">Refetch metrics</string>
 </resources>

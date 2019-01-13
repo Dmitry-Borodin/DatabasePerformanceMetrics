@@ -1,10 +1,14 @@
 package pet.dmitry.databaseperformancemetrics.ui
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.viewbinder.bindView
 import pet.dmitry.databaseperformancemetrics.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
+
+    val startStopButton by bindView<Button>(R.id.activity_main_start_stop_button)
 
     val presenter = MainPresenter()
 
@@ -18,4 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         presenter.onDetouch()
     }
+
+    override fun showAuthorsAndSongsAmout(authorsAmount: Long, usersAmount: Long) {
+    }
+
 }

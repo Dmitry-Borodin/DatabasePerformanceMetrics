@@ -1,7 +1,6 @@
 package pet.dmitry.databaseperformancemetrics.ui
 
 import kotlinx.coroutines.launch
-import pet.dmitry.databaseperformancemetrics.data.SongRepository
 import pet.dmitry.databaseperformancemetrics.di.DependencyGraph
 
 /**
@@ -9,15 +8,17 @@ import pet.dmitry.databaseperformancemetrics.di.DependencyGraph
  */
 class MainPresenter : ScopedPresenter() {
 
-    val repository = DependencyGraph.appScope.repository
+    private val repository = DependencyGraph.appScope.repository
 
     fun startSavingData() {
         launch {
-            repository.addAuthors(10,5)
+            repository.addAuthors(10, 5)
         }
     }
 
     fun updateAuthorsAndMessagesAmount() {
-
+        launch {
+            val authorsAndSongs = repository.getAuthorsAndSongsAmount()
+        }
     }
 }
