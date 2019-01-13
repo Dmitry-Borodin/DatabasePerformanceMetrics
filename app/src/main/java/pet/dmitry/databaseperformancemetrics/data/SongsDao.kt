@@ -1,6 +1,7 @@
 package pet.dmitry.databaseperformancemetrics.data
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 
 /**
@@ -8,5 +9,16 @@ import androidx.room.Query
  */
 @Dao
 interface SongsDao {
-//    @Query("SELECT * FROM ")
+
+    @Insert
+    fun insertAuthors(authors: List<Author>)
+
+    @Insert
+    fun insersSongs(songs: List<Song>)
+
+    @Query("SELECT * FROM author")
+    fun getAllAuthors()
+
+    @Query("SELECT * FROM song WHERE authorId = :authorId")
+    fun getSongsOfAuthor(authorId: Long)
 }
