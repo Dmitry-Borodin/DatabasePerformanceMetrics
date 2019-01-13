@@ -1,5 +1,8 @@
 package pet.dmitry.databaseperformancemetrics.data
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 import java.util.*
 
 /**
@@ -11,7 +14,7 @@ class SongRepository(
 ) {
     private val dao = database.getSongDao()
 
-    fun addAuthors(authorAmount: Int, songsPerAuthor: Int) {
+    suspend fun addAuthors(authorAmount: Int, songsPerAuthor: Int) = withContext(Dispatchers.IO) {
         //generate
         val authors = generator.generateAuthors(authorAmount)
         val songs = ArrayList<Song>().also {
@@ -21,5 +24,11 @@ class SongRepository(
         //put to the db
         dao.insertSongs(songs)
         dao.insertAuthors(authors)
+    }
+
+    suspend fun getAuthorsAndSongsAmount() : Pair<Long, Long> = withContext(Dispatchers.IO){
+        val authorsAmount = async { dao.getAmountOfAuthorsInDb() }
+        val songsAmount = async { dao.getAmountOfSongsInDb() }
+        return@withContext Pair(authorsAmount.await(), songsAmount.await())
     }
 }

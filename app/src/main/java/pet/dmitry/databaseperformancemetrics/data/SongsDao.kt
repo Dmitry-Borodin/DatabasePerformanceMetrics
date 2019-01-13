@@ -21,4 +21,10 @@ interface SongsDao {
 
     @Query("SELECT * FROM song WHERE authorId = :authorId")
     fun getSongsOfAuthor(authorId: Long) : List<Song>
+
+    @Query("SELECT Count(*) from song")
+    fun getAmountOfSongsInDb(): Long
+
+    @Query("SELECT Count(*) from author")
+    fun getAmountOfAuthorsInDb(): Long
 }

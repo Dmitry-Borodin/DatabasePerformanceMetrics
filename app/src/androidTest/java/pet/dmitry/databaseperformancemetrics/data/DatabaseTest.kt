@@ -42,4 +42,23 @@ class DatabaseTest {
         val restoredSongs = database.getSongDao().getSongsOfAuthor(authorId)
         assertEquals(songs, restoredSongs)
     }
+
+    @Test
+    fun shouldReturnAmountOfSavedAuthors() {
+        val authors = DependencyGraph.appScope.generator.generateAuthors(13)
+
+        database.getSongDao().insertAuthors(authors)
+        val amountofAuthors = database.getSongDao().getAmountOfAuthorsInDb()
+        assertEquals(authors.size.toLong(), amountofAuthors)
+    }
+
+    @Test
+    fun shouldReturnAmountOfSavedSongs() {
+        val authorId: Long = 10
+        val songs = DependencyGraph.appScope.generator.generateSongs(12, authorId)
+
+        database.getSongDao().insertSongs(songs)
+        val amount = database.getSongDao().getAmountOfSongsInDb()
+        assertEquals(songs.size.toLong(), amount)
+    }
 }
