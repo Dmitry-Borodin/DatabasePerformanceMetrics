@@ -9,11 +9,11 @@ import pet.dmitry.databaseperformancemetrics.R
 
 class MainActivity : AppCompatActivity(), MainView {
 
-    val startStopButton by bindView<Button>(R.id.activity_main_start_stop_button)
-    val refetchButton by bindView<Button>(R.id.activity_main_refetch_metrics_button)
-    val amountTextView by bindView<TextView>(R.id.activity_main_text_amount)
+    private val startStopButton by bindView<Button>(R.id.activity_main_start_stop_button)
+    private val refetchButton by bindView<Button>(R.id.activity_main_refetch_metrics_button)
+    private val amountTextView by bindView<TextView>(R.id.activity_main_text_amount)
 
-    val presenter = MainPresenter()
+    private val presenter = MainPresenter()
 
     init {
         startStopButton.setOnClickListener { presenter.onStartStopClicked() }
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        presenter.onAttach()
+        presenter.onAttach(this)
     }
 
     override fun onDestroy() {

@@ -8,13 +8,13 @@ import kotlin.coroutines.CoroutineContext
 /**
  * @author Dmitry Borodin on 1/13/19.
  */
-abstract class ScopedPresenter : CoroutineScope {
+abstract class ScopedPresenter<T> : CoroutineScope {
 
     protected lateinit var job: Job
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
-    open fun onAttach() {
+    open fun onAttach(view: T) {
         job = Job()
     }
 

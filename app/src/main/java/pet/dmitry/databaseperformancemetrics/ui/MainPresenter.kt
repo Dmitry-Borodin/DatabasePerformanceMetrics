@@ -6,16 +6,27 @@ import pet.dmitry.databaseperformancemetrics.di.DependencyGraph
 /**
  * @author Dmitry Borodin on 1/13/19.
  */
-class MainPresenter : ScopedPresenter() {
+class MainPresenter : ScopedPresenter<MainView>() {
 
     private val repository = DependencyGraph.appScope.repository
+    var view: MainView? = null
+
+    override fun onAttach(view: MainView) {
+        super.onAttach(view)
+        this.view = view
+    }
+
+    override fun onDetouch() {
+        super.onDetouch()
+        this.view = null
+    }
 
     fun onStartStopClicked() {
-
+        TODO()
     }
 
     fun onRefetchMetricsClicked() {
-
+        TODO()
     }
 
     private fun startSavingData() {
