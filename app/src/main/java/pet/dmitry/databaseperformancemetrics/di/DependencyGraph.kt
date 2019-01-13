@@ -2,6 +2,7 @@ package pet.dmitry.databaseperformancemetrics.di
 
 import android.content.Context
 import androidx.room.Room
+import pet.dmitry.databaseperformancemetrics.data.DataGenerator
 import pet.dmitry.databaseperformancemetrics.data.Database
 
 /**
@@ -18,6 +19,8 @@ object DependencyGraph {
                 "AppDatabase"
             ).build()
         }
+
+        val generator: DataGenerator = DataGenerator
 
         val repository = Unit
     }

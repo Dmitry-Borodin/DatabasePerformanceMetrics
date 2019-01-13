@@ -14,11 +14,11 @@ interface SongsDao {
     fun insertAuthors(authors: List<Author>)
 
     @Insert
-    fun insersSongs(songs: List<Song>)
+    fun insertSongs(songs: List<Song>)
 
     @Query("SELECT * FROM author")
-    fun getAllAuthors()
+    fun getAllAuthors() : List<Author>
 
     @Query("SELECT * FROM song WHERE authorId = :authorId")
-    fun getSongsOfAuthor(authorId: Long)
+    fun getSongsOfAuthor(authorId: Long) : List<Song>
 }

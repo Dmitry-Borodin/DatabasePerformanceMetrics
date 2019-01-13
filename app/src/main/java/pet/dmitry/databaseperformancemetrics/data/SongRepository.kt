@@ -7,9 +7,9 @@ import java.util.*
  */
 class SongRepository(
     database: Database,
-    val generator: DataGenerator
+    private val generator: DataGenerator
 ) {
-    val dao = database.getSongDao()
+    private val dao = database.getSongDao()
 
     fun addAuthors(authorAmount: Int, songsPerAuthor: Int) {
         //generate
@@ -19,7 +19,7 @@ class SongRepository(
         }
 
         //put to the db
-        dao.insersSongs(songs)
+        dao.insertSongs(songs)
         dao.insertAuthors(authors)
     }
 }
