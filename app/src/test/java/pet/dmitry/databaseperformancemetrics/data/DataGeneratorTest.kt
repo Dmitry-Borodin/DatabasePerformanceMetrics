@@ -19,4 +19,11 @@ class DataGeneratorTest {
             assertEquals(36, song.authorId)
         }
     }
+
+    @Test
+    fun shouldGenerateAuthors() {
+        val authors = dataGenerator.generateAuthors(10)
+
+        assertEquals(10, authors.size)
+    }
 }

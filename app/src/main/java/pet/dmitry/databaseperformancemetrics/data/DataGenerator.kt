@@ -12,7 +12,22 @@ object DataGenerator {
 
     fun generateSongs(amount: Int, authorId: Long): List<Song> {
         return List(amount) {
-            Song(id = songIdCounter.incrementAndGet(), authorId = authorId, name = "some dummy song name", url = "http://duckduckgo.com")
+            Song(
+                id = songIdCounter.incrementAndGet(),
+                authorId = authorId,
+                name = "some dummy song name",
+                url = "http://duckduckgo.com"
+            )
+        }
+    }
+
+    fun generateAuthors(amount: Int): List<Author> {
+        return List(amount) {
+            Author(
+                id = authorIdCounter.incrementAndGet(),
+                name = "some dummy author name",
+                homePage = "https://google.com"
+            )
         }
     }
 }
