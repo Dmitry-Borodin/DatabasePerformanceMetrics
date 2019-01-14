@@ -15,14 +15,15 @@ class MainActivity : AppCompatActivity(), MainView {
 
     private val presenter = MainPresenter()
 
-    init {
-        startStopButton.setOnClickListener { presenter.onStartStopClicked() }
-        refetchButton.setOnClickListener { presenter.onRefetchMetricsClicked() }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        init()
+    }
+
+    private fun init() {
+        startStopButton.setOnClickListener { presenter.onStartStopClicked() }
+        refetchButton.setOnClickListener { presenter.onRefetchMetricsClicked() }
         presenter.onAttach(this)
     }
 
