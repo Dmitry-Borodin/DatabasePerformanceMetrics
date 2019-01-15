@@ -1,5 +1,6 @@
 package pet.dmitry.databaseperformancemetrics.ui
 
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import pet.dmitry.databaseperformancemetrics.di.DependencyGraph
 
@@ -10,6 +11,7 @@ class MainPresenter : ScopedPresenter<MainView>() {
 
     private val repository = DependencyGraph.appScope.repository
     var view: MainView? = null
+    var activeLoading : Job? = null
 
     override fun onAttach(view: MainView) {
         super.onAttach(view)
@@ -22,7 +24,16 @@ class MainPresenter : ScopedPresenter<MainView>() {
     }
 
     fun onStartStopClicked() {
-        TODO()
+        if (activeLoading?.isCompleted != false) {
+            activeLoading = launch {
+                while (true) {
+//                    repository.addAuthors()
+//                    repository.
+                }
+            }
+        }else {
+            activeLoading?.cancel()
+        }
     }
 
     fun onRefetchMetricsClicked() {
