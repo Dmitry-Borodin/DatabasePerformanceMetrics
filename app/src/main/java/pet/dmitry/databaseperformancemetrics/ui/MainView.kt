@@ -5,7 +5,7 @@ package pet.dmitry.databaseperformancemetrics.ui
  */
 interface MainView {
 
-    fun showAuthorsAndSongsAmount(authorsAmount: Long, usersAmount: Long)
+    fun showAuthorsAndSongsAmount(authorsAmount: Long, songsAmount: Long)
     fun showPaused()
     fun showWorkingState()
 }

@@ -19,6 +19,9 @@ class MainPresenter : ScopedPresenter<MainView>() {
     override fun onAttach(view: MainView) {
         super.onAttach(view)
         this.view = view
+        launch {
+            updateAmounts()
+        }
     }
 
     override fun onDetouch() {
@@ -32,13 +35,18 @@ class MainPresenter : ScopedPresenter<MainView>() {
                 view?.showWorkingState()
                 while (true) {
                     repository.addAuthors(STEP, STEP)
-//                    repository.
+                    updateAmounts()
                 }
             }
         } else {
             activeLoading?.cancel()
             view?.showPaused()
         }
+    }
+
+    private suspend fun updateAmounts() {
+        val authorsAndSongs = repository.getAuthorsAndSongsAmount()
+        view?.showAuthorsAndSongsAmount(authorsAmount = authorsAndSongs.first, songsAmount = authorsAndSongs.second)
     }
 
     fun onRefetchMetricsClicked() {

@@ -9,7 +9,6 @@ import pet.dmitry.databaseperformancemetrics.R
 
 class MainActivity : AppCompatActivity(), MainView {
     private val startStopButton by bindView<Button>(R.id.activity_main_start_stop_button)
-
     private val refetchButton by bindView<Button>(R.id.activity_main_refetch_metrics_button)
     private val amountTextView by bindView<TextView>(R.id.activity_main_text_amount)
     private val presenter = MainPresenter()
@@ -39,8 +38,8 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter.onDetouch()
     }
 
-    override fun showAuthorsAndSongsAmount(authorsAmount: Long, usersAmount: Long) {
-        amountTextView.text = getString(R.string.amount_of_authors_and_songs_main_text, authorsAmount, usersAmount)
+    override fun showAuthorsAndSongsAmount(authorsAmount: Long, songsAmount: Long) {
+        amountTextView.text = getString(R.string.amount_of_authors_and_songs_main_text, authorsAmount, songsAmount)
     }
 
 }
