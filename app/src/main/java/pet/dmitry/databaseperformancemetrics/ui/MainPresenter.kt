@@ -7,11 +7,14 @@ import pet.dmitry.databaseperformancemetrics.di.DependencyGraph
 /**
  * @author Dmitry Borodin on 1/13/19.
  */
+
+private const val STEP = 50
+
 class MainPresenter : ScopedPresenter<MainView>() {
 
     private val repository = DependencyGraph.appScope.repository
     var view: MainView? = null
-    var activeLoading : Job? = null
+    var activeLoading: Job? = null
 
     override fun onAttach(view: MainView) {
         super.onAttach(view)
@@ -26,13 +29,15 @@ class MainPresenter : ScopedPresenter<MainView>() {
     fun onStartStopClicked() {
         if (activeLoading?.isCompleted != false) {
             activeLoading = launch {
+                view?.showWorkingState()
                 while (true) {
-//                    repository.addAuthors()
+                    repository.addAuthors(STEP, STEP)
 //                    repository.
                 }
             }
-        }else {
+        } else {
             activeLoading?.cancel()
+            view?.showPaused()
         }
     }
 

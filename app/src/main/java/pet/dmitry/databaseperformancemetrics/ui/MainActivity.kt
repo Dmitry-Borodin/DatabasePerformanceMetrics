@@ -8,11 +8,10 @@ import com.viewbinder.bindView
 import pet.dmitry.databaseperformancemetrics.R
 
 class MainActivity : AppCompatActivity(), MainView {
-
     private val startStopButton by bindView<Button>(R.id.activity_main_start_stop_button)
+
     private val refetchButton by bindView<Button>(R.id.activity_main_refetch_metrics_button)
     private val amountTextView by bindView<TextView>(R.id.activity_main_text_amount)
-
     private val presenter = MainPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,12 +26,20 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter.onAttach(this)
     }
 
+    override fun showPaused() {
+        startStopButton.text = getString(R.string.start_feeding)
+    }
+
+    override fun showWorkingState() {
+        startStopButton.text = getString(R.string.stop_feeding)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDetouch()
     }
 
-    override fun showAuthorsAndSongsAmout(authorsAmount: Long, usersAmount: Long) {
+    override fun showAuthorsAndSongsAmount(authorsAmount: Long, usersAmount: Long) {
         amountTextView.text = getString(R.string.amount_of_authors_and_songs_main_text, authorsAmount, usersAmount)
     }
 
