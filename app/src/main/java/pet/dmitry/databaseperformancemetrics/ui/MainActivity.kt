@@ -1,11 +1,14 @@
 package pet.dmitry.databaseperformancemetrics.ui
 
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.viewbinder.bindView
+import pet.dmitry.databaseperformancemetrics.Profilers.InstanceOfProfiler
 import pet.dmitry.databaseperformancemetrics.R
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), MainView {
     private val startStopButton by bindView<Button>(R.id.activity_main_start_stop_button)
@@ -23,6 +26,9 @@ class MainActivity : AppCompatActivity(), MainView {
         startStopButton.setOnClickListener { presenter.onStartStopClicked() }
         refetchButton.setOnClickListener { presenter.onRefetchMetricsClicked() }
         presenter.onAttach(this)
+        Handler().post {
+            Timber.e(InstanceOfProfiler.profile().toString())
+        }
     }
 
     override fun showPaused() {
